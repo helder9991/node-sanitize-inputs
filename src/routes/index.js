@@ -16,7 +16,7 @@ routes.get('/', async (req, res, next) => {
     
     const { id, name, date } = req.query;
 
-        // Verifica se não passou na validação
+    // Verifica se não passou na validação
     if(!(await schema.isValid({ id, name, date })))
         throw new AppError('Erro de Validação');
 
@@ -26,13 +26,13 @@ routes.get('/', async (req, res, next) => {
         date,
     ];
 
-    // Limpa os imputs
+    // Limpa os inputs
     sqlValues = sanitizeSQLValue(sqlValues);
-    
+ 
     req.mysql.query(`
         SELECT *
         FROM users
-        WHERE name LIKE concat('%', ?, '%');asd
+        WHERE name LIKE concat('%', ?, '%');
         
         SELECT *
         FROM users
